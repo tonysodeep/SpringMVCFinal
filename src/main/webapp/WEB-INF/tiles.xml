@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="baseLayoutAdmin" template="/WEB-INF/layout/admin/base.jsp"> 
+        <put-attribute name="title" value=""/>
+        <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
+       
+    </definition>
+    
+    <definition name="admin/index" extends="baseLayoutAdmin">
+        <put-attribute name="title" value="Administration"/>
+        <put-attribute name="content" value="/WEB-INF/pages/admin/index.jsp"/>
+    </definition>
+    
+    <definition name="admin/medicine" extends="baseLayoutAdmin">
+        <put-attribute name="title" value="Administration"/>
+        <put-attribute name="content" value="/WEB-INF/pages/admin/medicine.jsp"/>
+    </definition>
+ 
+    <definition name="admin/doctor" extends="baseLayoutAdmin">
+        <put-attribute name="title" value="Administration"/>
+        <put-attribute name="content" value="/WEB-INF/pages/admin/doctor.jsp"/>
+    </definition>
+    
+    <definition name="add-medicine" extends="baseLayoutAdmin">
+        <put-attribute name="title" value="Medicition managment"/>
+        <put-attribute name="content" value="/WEB-INF/pages/admin/add-medicine.jsp"/>
+    </definition>
+    
+    <definition name="medicine-detail" extends="baseLayoutAdmin">
+        <put-attribute name="title" value="Medicition Detail"/>
+        <put-attribute name="content" value="/WEB-INF/pages/admin/medicine-detail.jsp"/>
+    </definition>
+</tiles-definitions>
+
