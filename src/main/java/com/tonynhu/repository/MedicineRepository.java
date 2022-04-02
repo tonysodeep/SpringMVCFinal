@@ -18,4 +18,6 @@ public interface MedicineRepository {
     int countMedicines();
 
     boolean addOrUpdateProduct(Medicine m);
+
+    Medicine getMedicineById(int id);
 }

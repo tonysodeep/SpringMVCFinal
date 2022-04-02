@@ -32,7 +32,6 @@ public class MedicineController {
 
     @GetMapping("/add-medicine")
     public String addView(Model model) {
-        model.addAttribute("categories", this.categoryService.getCategories());
         model.addAttribute("medicine", new Medicine());
         return "add-medicine";
     }

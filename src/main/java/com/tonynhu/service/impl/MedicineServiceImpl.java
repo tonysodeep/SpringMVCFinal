@@ -23,23 +23,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MedicineServiceImpl implements MedicineService {
-    
+
     @Autowired
     private MedicineRepository medicineRepository;
-    
+
     @Autowired
     private Cloudinary cloudinary;
-    
+
     @Override
     public List<Medicine> getMedicines(String kw, int page) {
         return this.medicineRepository.getMedicines(kw, page);
     }
-    
+
     @Override
     public int countMedicines() {
         return this.medicineRepository.countMedicines();
     }
-    
+
     @Override
     public boolean addOrUpdateProduct(Medicine m) {
         if (m.getFile() != null) {
@@ -51,8 +51,13 @@ public class MedicineServiceImpl implements MedicineService {
                 Logger.getLogger(MedicineServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         return this.medicineRepository.addOrUpdateProduct(m);
     }
-    
+
+    @Override
+    public Medicine getMedicineById(int i) {
+        return this.medicineRepository.getMedicineById(i);
+    }
+
 }

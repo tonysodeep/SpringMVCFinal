@@ -48,7 +48,7 @@ public class MedicineRepositoryImpl implements MedicineRepository {
             Predicate p = b.like(root.get("name").as(String.class), String.format("%%%s%%", kw));
             q.where(p);
         }
-        q.orderBy(b.desc(root.get("id"))); 
+        q.orderBy(b.desc(root.get("id")));
         Query query = session.createQuery(q);
 
         int pageSize = Integer.parseInt(env.getProperty("info.page_size"));
@@ -77,6 +77,12 @@ public class MedicineRepositoryImpl implements MedicineRepository {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public Medicine getMedicineById(int id) {
+        Session s = this.sessionFactoryBean.getObject().getCurrentSession();
+        return s.get(Medicine.class, id);
     }
 
 }

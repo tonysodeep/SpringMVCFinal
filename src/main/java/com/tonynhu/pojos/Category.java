@@ -42,7 +42,7 @@ public class Category implements Serializable {
     @Size(max = 45)
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "categoryId")
+    @OneToMany(mappedBy = "category")
     private List<Medicine> medicineList;
 
     public Category() {

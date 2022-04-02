@@ -11,6 +11,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author hyngu
  */
 @Controller
+@ControllerAdvice
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -28,6 +31,11 @@ public class AdminController {
 
     @Autowired
     private MedicineService medicineService;
+
+    @ModelAttribute
+    public void commonAttributes(Model model) {
+        model.addAttribute("categories", this.categoryService.getCategories());
+    }
 
     @RequestMapping("/")
     public String admin() {
@@ -39,7 +47,6 @@ public class AdminController {
             @RequestParam(name = "kw", required = false) String kw,
             @RequestParam(name = "page", defaultValue = "1") Integer page) {
 
-        model.addAttribute("categories", this.categoryService.getCategories());
         model.addAttribute("medicines", this.medicineService.getMedicines(kw, page));
         model.addAttribute("medicineCounter", this.medicineService.countMedicines());
         List<Category> cates = this.categoryService.getCategories();
@@ -55,7 +62,9 @@ public class AdminController {
     }
 
     @RequestMapping("/medicine/{medicineId}")
-    public String medicineDetail(@PathVariable(name = "medicineId") int id) {
+    public String medicineDetail(Model model,
+            @PathVariable(name = "medicineId") int id) {
+        model.addAttribute("medicine", this.medicineService.getMedicineById(id));
         return "medicine-detail";
     }
 

@@ -16,6 +16,8 @@ public interface MedicineService {
     List<Medicine> getMedicines(String kw, int page);
 
     int countMedicines();
-    
+
     boolean addOrUpdateProduct(Medicine m);
+
+    Medicine getMedicineById(int id);
 }
