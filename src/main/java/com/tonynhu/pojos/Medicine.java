@@ -42,17 +42,17 @@ import org.springframework.web.multipart.MultipartFile;
 public class Medicine implements Serializable {
 
     /**
-     * @return the category
+     * @return the file
      */
-    public Category getCategory() {
-        return category;
+    public MultipartFile getFile() {
+        return file;
     }
 
     /**
-     * @param category the category to set
+     * @param file the file to set
      */
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
     private static final long serialVersionUID = 1L;
@@ -82,7 +82,7 @@ public class Medicine implements Serializable {
     private Integer quanity;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne
-    private Category category;
+    private Category categoryId;
     @OneToMany(mappedBy = "medicineId")
     private List<PrescriptionDetail> prescriptionDetailList;
 
@@ -150,7 +150,13 @@ public class Medicine implements Serializable {
         this.quanity = quanity;
     }
 
-   
+    public Category getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Category categoryId) {
+        this.categoryId = categoryId;
+    }
 
     @XmlTransient
     public List<PrescriptionDetail> getPrescriptionDetailList() {
@@ -184,20 +190,6 @@ public class Medicine implements Serializable {
     @Override
     public String toString() {
         return "com.tonynhu.pojos.Medicine[ id=" + id + " ]";
-    }
-
-    /**
-     * @return the file
-     */
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    /**
-     * @param file the file to set
-     */
-    public void setFile(MultipartFile file) {
-        this.file = file;
     }
 
 }

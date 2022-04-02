@@ -34,7 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Employee.findById", query = "SELECT e FROM Employee e WHERE e.id = :id"),
     @NamedQuery(name = "Employee.findByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email"),
     @NamedQuery(name = "Employee.findByFullname", query = "SELECT e FROM Employee e WHERE e.fullname = :fullname"),
-    @NamedQuery(name = "Employee.findByMobile", query = "SELECT e FROM Employee e WHERE e.mobile = :mobile")})
+    @NamedQuery(name = "Employee.findByMobile", query = "SELECT e FROM Employee e WHERE e.mobile = :mobile"),
+    @NamedQuery(name = "Employee.findByRole", query = "SELECT e FROM Employee e WHERE e.role = :role")})
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -73,10 +74,13 @@ public class Employee implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "image")
     private String image;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "role")
+    private String role;
     @OneToMany(mappedBy = "employeeId")
     private List<Schedule> scheduleList;
-    @OneToMany(mappedBy = "emplId")
-    private List<EmployeeRole> employeeRoleList;
 
     public Employee() {
     }
@@ -85,12 +89,13 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public Employee(Integer id, String email, String fullname, String mobile, String password) {
+    public Employee(Integer id, String email, String fullname, String mobile, String password, String role) {
         this.id = id;
         this.email = email;
         this.fullname = fullname;
         this.mobile = mobile;
         this.password = password;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -149,6 +154,14 @@ public class Employee implements Serializable {
         this.image = image;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @XmlTransient
     public List<Schedule> getScheduleList() {
         return scheduleList;
@@ -156,15 +169,6 @@ public class Employee implements Serializable {
 
     public void setScheduleList(List<Schedule> scheduleList) {
         this.scheduleList = scheduleList;
-    }
-
-    @XmlTransient
-    public List<EmployeeRole> getEmployeeRoleList() {
-        return employeeRoleList;
-    }
-
-    public void setEmployeeRoleList(List<EmployeeRole> employeeRoleList) {
-        this.employeeRoleList = employeeRoleList;
     }
 
     @Override
