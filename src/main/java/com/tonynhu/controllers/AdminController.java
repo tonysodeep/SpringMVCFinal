@@ -36,6 +36,8 @@ public class AdminController {
     public void commonAttributes(Model model) {
         model.addAttribute("categories", this.categoryService.getCategories());
     }
+    
+  
 
     @RequestMapping("/")
     public String admin() {
