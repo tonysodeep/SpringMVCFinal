@@ -7,7 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-    <definition name="baseLayoutAdmin" template="/WEB-INF/layout/admin/base.jsp"> 
+    <definition name="baseLayout" template="/WEB-INF/layout/base.jsp"> 
         <put-attribute name="title" value=""/>
         <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
         <put-attribute name="content" value=""/>
@@ -15,31 +15,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
        
     </definition>
     
-    <definition name="admin/index" extends="baseLayoutAdmin">
+    <definition name="admin/index" extends="baseLayout">
         <put-attribute name="title" value="Administration"/>
+        <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
         <put-attribute name="content" value="/WEB-INF/pages/admin/index.jsp"/>
     </definition>
     
-    <definition name="admin/medicine" extends="baseLayoutAdmin">
+    <definition name="admin/medicine" extends="baseLayout">
         <put-attribute name="title" value="Administration"/>
+        <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
         <put-attribute name="content" value="/WEB-INF/pages/admin/medicine.jsp"/>
     </definition>
  
-    <definition name="admin/doctor" extends="baseLayoutAdmin">
+    <definition name="admin/doctor" extends="baseLayout">
         <put-attribute name="title" value="Administration"/>
+        <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
         <put-attribute name="content" value="/WEB-INF/pages/admin/doctor.jsp"/>
     </definition>
     
-    <definition name="add-medicine" extends="baseLayoutAdmin">
+    <definition name="add-medicine" extends="baseLayout">
         <put-attribute name="title" value="Medicition managment"/>
+        <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
         <put-attribute name="content" value="/WEB-INF/pages/admin/add-medicine.jsp"/>
     </definition>
     
-    <definition name="medicine-detail" extends="baseLayoutAdmin">
+    <definition name="medicine-detail" extends="baseLayout">
         <put-attribute name="title" value="Medicition Detail"/>
+        <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
         <put-attribute name="content" value="/WEB-INF/pages/admin/medicine-detail.jsp"/>
     </definition>
     
+    <definition name="doctor/index" extends="baseLayout">
+        <put-attribute name="title" value="Doctor"/>
+         <put-attribute name="header" value="/WEB-INF/layout/doctor/header.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/pages/doctor/index.jsp"/>
+    </definition>
     
 </tiles-definitions>
 

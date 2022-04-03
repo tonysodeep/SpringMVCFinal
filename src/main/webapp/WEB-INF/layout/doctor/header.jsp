@@ -25,17 +25,12 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/admin/"/>">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/admin/doctor"/>">Doctor</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/admin/medicine"/>">Medicine</a>
+                <a class="nav-link" href="<c:url value="/admin/"/>">Schedule</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-info" href="">Prescription <span class="badge badge-danger">0</span></a>
             </li>
+
         </ul>
     </div>
     <c:url value="/admin/medicine" var="homeAction"/>
@@ -46,5 +41,6 @@
                placeholder="nhap tu khoa">
         <button class="btn btn-success" type="submit">Search</button>
     </form>
+
 </nav>
 
