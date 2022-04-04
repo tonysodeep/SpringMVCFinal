@@ -23,14 +23,14 @@
     <!-- Navbar links -->
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/admin/"/>">Schedule</a>
+                <a class="nav-link" href="<c:url value="/doctor/"/>">Schedule</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-info" href="">Prescription <span class="badge badge-danger">0</span></a>
+                <a class="nav-link text-info" href="<c:url value="/doctor/prescription/${sheduleId}"/>">Prescription <span class="badge badge-danger presCounter">${presStats.totalQuantity}</span></a>
             </li>
-
         </ul>
     </div>
     <c:url value="/admin/medicine" var="homeAction"/>
