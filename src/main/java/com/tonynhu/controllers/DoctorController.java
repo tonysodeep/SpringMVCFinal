@@ -36,6 +36,7 @@ public class DoctorController {
     @Autowired
     private MedicineService medicineService;
 
+
     @ModelAttribute
     public void commonAttributes(Model model, HttpSession session) {
         model.addAttribute("presStats", Utils.presStats((Map<Integer, Pres>) session.getAttribute("pres")));
@@ -53,8 +54,9 @@ public class DoctorController {
     public String add(Model model,
             @RequestParam(name = "kw", required = false) String kw,
             @RequestParam(name = "page", defaultValue = "1") Integer page,
+            HttpSession session,
             @PathVariable(name = "scheduleId") int id) {
-        model.addAttribute("sheduleId", id);
+        session.setAttribute("sheduleId", id);
         model.addAttribute("medicines", this.medicineService.getMedicines(kw, page));
         model.addAttribute("medicineCounter", this.medicineService.countMedicines());
         return "doctor/add-pres";
