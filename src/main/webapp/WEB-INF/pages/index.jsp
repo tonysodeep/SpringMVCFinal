@@ -14,6 +14,7 @@
         <link href="<c:url value="/css/style.css"/>"/>
     </head>
     <body>
+        <h1>Home page</h1>
         <h1>Private Clinit managment system</h1>
         <a href="<c:url value="/login"/>" class="btn btn-danger">login</a>
         <a href="<c:url value="/admin-signup"/>" class="btn btn-danger">sign up</a>

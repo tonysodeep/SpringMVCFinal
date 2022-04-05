@@ -9,6 +9,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<h1 class="text-center text-info" >Dashboard </h1>
+<h1 class="text-center text-info" >Dashboard  </h1>
 
 
