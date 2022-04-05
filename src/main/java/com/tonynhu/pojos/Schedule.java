@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,8 +59,8 @@ public class Schedule implements Serializable {
     @ManyToOne
     private Employee employeeId;
     @JoinColumn(name = "prescription_id", referencedColumnName = "id")
-    @ManyToOne
-    private Prescription prescriptionId;
+    @OneToOne
+    private Prescription prescription;
 
     public Schedule() {
     }
@@ -108,14 +109,6 @@ public class Schedule implements Serializable {
         this.employeeId = employeeId;
     }
 
-    public Prescription getPrescriptionId() {
-        return prescriptionId;
-    }
-
-    public void setPrescriptionId(Prescription prescriptionId) {
-        this.prescriptionId = prescriptionId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -139,6 +132,20 @@ public class Schedule implements Serializable {
     @Override
     public String toString() {
         return "com.tonynhu.pojos.Schedule[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the prescription
+     */
+    public Prescription getPrescription() {
+        return prescription;
+    }
+
+    /**
+     * @param prescription the prescription to set
+     */
+    public void setPrescription(Prescription prescription) {
+        this.prescription = prescription;
     }
     
 }

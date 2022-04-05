@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,10 +50,14 @@ public class Prescription implements Serializable {
     @Size(max = 45)
     @Column(name = "note")
     private String note;
-    @OneToMany(mappedBy = "prescriptionId")
-    private List<Schedule> scheduleList;
+    @OneToOne(mappedBy = "prescription")
+    private Schedule schedule;
     @OneToMany(mappedBy = "prescriptionId")
     private List<PrescriptionDetail> prescriptionDetailList;
+
+    {
+        createDate = new Date();
+    }
 
     public Prescription() {
     }
@@ -86,21 +91,26 @@ public class Prescription implements Serializable {
     }
 
     @XmlTransient
-    public List<Schedule> getScheduleList() {
-        return scheduleList;
-    }
-
-    public void setScheduleList(List<Schedule> scheduleList) {
-        this.scheduleList = scheduleList;
-    }
-
-    @XmlTransient
     public List<PrescriptionDetail> getPrescriptionDetailList() {
         return prescriptionDetailList;
     }
 
     public void setPrescriptionDetailList(List<PrescriptionDetail> prescriptionDetailList) {
         this.prescriptionDetailList = prescriptionDetailList;
+    }
+
+    /**
+     * @return the schedule
+     */
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    /**
+     * @param schedule the schedule to set
+     */
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 
     @Override
@@ -127,5 +137,5 @@ public class Prescription implements Serializable {
     public String toString() {
         return "com.tonynhu.pojos.Prescription[ id=" + id + " ]";
     }
-    
+
 }
