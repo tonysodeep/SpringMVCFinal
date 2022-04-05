@@ -17,8 +17,7 @@
                 <div class="card-body">
                     <h4 class="card-title">${s.clientFullname}</h4>
                     <p class="card-text">${s.clientPhone}</p>
-                    <a href="<c:url value="/doctor/medicine/${s.id}"/>" class="btn btn-primary">See Detail</a>
-                    <a href="#" class="btn btn-danger">add to Prescriptions</a>
+                    <a href="<c:url value="/doctor/add-precription/${s.id}"/>" class="btn btn-danger">create Prescriptions</a>
                 </div>
             </div>
         </div>

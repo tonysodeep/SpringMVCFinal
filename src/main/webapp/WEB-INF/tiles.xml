@@ -47,8 +47,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
     
     <definition name="doctor/index" extends="baseLayout">
         <put-attribute name="title" value="Doctor"/>
-         <put-attribute name="header" value="/WEB-INF/layout/doctor/header.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/layout/doctor/header.jsp"/>
         <put-attribute name="content" value="/WEB-INF/pages/doctor/index.jsp"/>
+    </definition>
+    
+    <definition name="doctor/add-pres" extends="baseLayout">
+        <put-attribute name="title" value="Doctor"/>
+        <put-attribute name="header" value="/WEB-INF/layout/doctor/header.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/pages/doctor/add-pres.jsp"/>
+    </definition>
+    
+    <definition name="doctor/prescription" extends="baseLayout">
+        <put-attribute name="title" value="Prescription"/>
+        <put-attribute name="header" value="/WEB-INF/layout/doctor/header.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/pages/doctor/prescription.jsp"/>
     </definition>
     
 </tiles-definitions>

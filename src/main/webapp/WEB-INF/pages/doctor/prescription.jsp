@@ -9,5 +9,43 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<h1>prescription</h1>
-<a class="navbar-brand" href="<c:url value="/doctor/"/>">E-commerce Website</a>
+<h1 class="text-center text-info"> Pres DETAIL</h1>
+<c:if test="${pres ==null}">
+    <p><em>No items</em></p>
+</c:if>
+
+<c:if test="${pres !=null}">
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+        <c:forEach items="${pres.values()}" var="p"> 
+            <tr>
+                <td>${p.id}</td>
+                <td>${p.name}</td>
+                <td>${p.price} VND</td>
+                <td>
+                    <input type="number"
+                           class="form-control"
+                           onblur="updatePres(${p.id}, this)"
+                           value="${p.quantity}"/>
+                </td>
+                <td>
+                    <input type="button"
+                           onclick="deletePres(${p.id})"
+                           value="Delete" class="btn btn-danger"/>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+    <div class="alert alert-info">
+        <h3>Total Amount: <span class="presAmount"> ${presStats.totalAmount}</span></h3>
+        <h3>Total Quantity:<span class="presCounter">${presStats.totalQuantity}</span></h3>
+    </div>
+    <input type="button" value="Pay" class="btn btn-primary "/>
+
+</c:if>

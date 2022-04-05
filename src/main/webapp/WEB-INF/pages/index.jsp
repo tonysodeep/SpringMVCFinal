@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
+        <link href="<c:url value="/css/style.css"/>"/>
     </head>
     <body>
         <h1>Private Clinit managment system</h1>
