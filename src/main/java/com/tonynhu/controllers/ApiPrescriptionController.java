@@ -5,10 +5,12 @@
 package com.tonynhu.controllers;
 
 import com.tonynhu.pojos.Pres;
+import com.tonynhu.service.PrescriptionService;
 import com.tonynhu.utils.Utils;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class ApiPrescriptionController {
+
+    @Autowired
+    private PrescriptionService prescriptionService;
 
     @PostMapping("/add-pres")
     public ResponseEntity<Map<String, String>> addToPres(HttpSession session,
@@ -71,6 +76,20 @@ public class ApiPrescriptionController {
             pres.remove(id);
             session.setAttribute("pres", pres);
             return new ResponseEntity<>(Utils.presStats(pres), HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/pay")
+    public ResponseEntity addPayment(HttpSession session) {
+        Map<Integer, Pres> pres = (Map<Integer, Pres>) session.getAttribute("pres");
+        int sheduleId = (Integer) session.getAttribute("sheduleId");
+        if (pres != null) {
+            if (this.prescriptionService.addPrescription((Map<Integer, Pres>) session.getAttribute("pres"), sheduleId) == true) {
+                session.removeAttribute("pres");
+                session.removeAttribute("sheduleId");
+                return new ResponseEntity(HttpStatus.CREATED);
+            }
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }

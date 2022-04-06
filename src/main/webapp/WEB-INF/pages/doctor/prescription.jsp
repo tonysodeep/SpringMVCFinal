@@ -46,6 +46,9 @@
         <h3>Total Amount: <span class="presAmount"> ${presStats.totalAmount}</span></h3>
         <h3>Total Quantity:<span class="presCounter">${presStats.totalQuantity}</span></h3>
     </div>
-    <input type="button" value="Pay" class="btn btn-primary "/>
+    <input type="button"
+           value="DONE" 
+           onclick="pay()"
+           class="btn btn-primary "/>
 
 </c:if>
