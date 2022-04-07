@@ -7,8 +7,232 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : hyngu
 */
 
-body {
-    background-color: lightblue;
-    color: darkblue;
-    font-family: Tahoma;
+.shadow-dark
+{
+    box-shadow: 0 0 20px rgba(48, 46, 77, 0.15);
+}
+.padd-15
+{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+/* LOGIN */
+.box
+{
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 400px;
+    border-radius: 15px;
+}
+.box h1
+{
+    font-weight: 700;
+    padding: 20px;
+    color: blueviolet;
+    text-align: center;
+}
+.box .form-label
+{
+    font-weight: 500;
+    font-size: 20px;
+}
+.box .button
+{
+    width: 250px;
+    height: auto;
+    padding: 10px;
+    margin: auto;
+}
+.box .btn
+{
+    margin: 0 auto;
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 35px;
+    margin-bottom: 20px;
+    color: white;
+    border-radius: 30px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+.box .btn:hover
+{
+    transform: scale(1.05);
+}
+.box .btn #btn-login,
+.box .btn #btn-signup
+{
+    margin-bottom: 20px;
+}
+/* SIGNUP */
+.bos
+{
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 500px;
+    border-radius: 15px;
+}
+.bos h1
+{
+    font-weight: 700;
+    padding: 20px;
+    color: blueviolet;
+    text-align: center;
+}
+.bos .form-label
+{
+    font-weight: 500;
+    font-size: 18px;
+}
+.bos .button
+{
+    width: 250px;
+    height: auto;
+    padding: 10px;
+    margin: auto;
+}
+.bos .btn
+{
+    margin: 0 auto;
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 35px;
+    margin-bottom: 20px;
+    color: white;
+    border-radius: 30px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+.bos .btn:hover
+{
+    transform: scale(1.05);
+}
+.bos .btn #btn-login,
+.bos .btn #btn-signup
+{
+    margin-bottom: 20px;
+}
+.bos .form-select
+{
+    margin: 0 auto;
+    width: 470px;
+}
+/* HOME */
+header .navbar-brand
+{
+    font-weight: 700;
+    font-size: 25px;
+}
+header .navbar-nav .nav-item .nav-link
+{
+    font-size: 20px;
+    font-weight: 500;
+}
+header .carousel-inner .carousel-item
+{
+    height: 500px;
+}
+/* CONTENT */
+.content h1
+{
+    font-size: 25px;
+    text-align: center;
+    margin-top: 20px;
+}
+.content .card-group
+{
+    height: 400px;
+    margin: 10px;
+}
+.content .card-group .card
+{
+    margin: 15px;
+    border-radius: 15px;
+    transition: all 0.3s ease-out;
+}
+.content .card-group .card:hover
+{
+    transform: scale(1.05);
+}
+.content .card-group .card .card-img-top
+{
+    width: 100%;
+    height: 70%;
+    border-radius: 15px;
+}
+.content .card-group .card .card-body .card-title
+{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+}
+.content .card-group .card .card-body .card-text
+{
+    text-align: center;
+    font-size: 18px;
+}
+.content .about
+{
+    margin-top: 150px;
+}
+.content .about h1
+{
+    margin: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+}
+.content .about .card
+{
+    border-radius: 15px;
+    transition: all 0.3s ease-out;
+}
+.content .about .card:hover
+{
+    transform: scale(1.03);
+}
+.content .about .card .img-fluid
+{
+    border-radius: 15px;
+}
+/* CONTACT */
+.content .contact
+{
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+.content .contact h1
+{
+    margin: 20px;
+    padding-top: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+}
+.content .contact .form-label
+{
+    font-weight: 500;
+    font-size: 18px;
+}
+.content .contact .btn
+{
+    margin-top: 60px;
+    float: right;
+    color: rgb(223, 169, 23);
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 35px;
+    border-radius: 10px;
+    white-space: nowrap;
+    transition: all 0.5s ease;
+}
+.content .contact .btn:hover
+{
+    transform: scale(1.07);
+    background-color: rgb(223, 169, 23);
+    color: white;
 }
