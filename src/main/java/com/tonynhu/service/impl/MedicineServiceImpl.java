@@ -31,8 +31,8 @@ public class MedicineServiceImpl implements MedicineService {
     private Cloudinary cloudinary;
 
     @Override
-    public List<Medicine> getMedicines(String kw, int page) {
-        return this.medicineRepository.getMedicines(kw, page);
+    public List<Medicine> getMedicines(Map<String,String> params, int page) {
+        return this.medicineRepository.getMedicines(params, page);
     }
 
     @Override

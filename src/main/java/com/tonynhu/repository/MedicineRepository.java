@@ -6,6 +6,7 @@ package com.tonynhu.repository;
 
 import com.tonynhu.pojos.Medicine;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public interface MedicineRepository {
 
-    List<Medicine> getMedicines(String kw, int page);
+    List<Medicine> getMedicines(Map<String,String> params, int page);
 
     int countMedicines();
 

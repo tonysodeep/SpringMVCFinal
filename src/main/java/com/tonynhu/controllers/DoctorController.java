@@ -9,6 +9,7 @@ import com.tonynhu.pojos.Pres;
 import com.tonynhu.service.DoctorService;
 import com.tonynhu.service.MedicineService;
 import com.tonynhu.utils.Utils;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -36,7 +37,6 @@ public class DoctorController {
     @Autowired
     private MedicineService medicineService;
 
-
     @ModelAttribute
     public void commonAttributes(Model model, HttpSession session) {
         model.addAttribute("presStats", Utils.presStats((Map<Integer, Pres>) session.getAttribute("pres")));
@@ -57,7 +57,9 @@ public class DoctorController {
             HttpSession session,
             @PathVariable(name = "scheduleId") int id) {
         session.setAttribute("sheduleId", id);
-        model.addAttribute("medicines", this.medicineService.getMedicines(kw, page));
+        Map<String, String> params = new HashMap<>();
+        params.put("kw", kw);
+        model.addAttribute("medicines", this.medicineService.getMedicines(params, page));
         model.addAttribute("medicineCounter", this.medicineService.countMedicines());
         return "doctor/add-pres";
     }

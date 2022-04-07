@@ -6,13 +6,16 @@ package com.tonynhu.repository.impl;
 
 import com.tonynhu.pojos.Medicine;
 import com.tonynhu.repository.MedicineRepository;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.hibernate.query.criteria.internal.predicate.BetweenPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -36,7 +39,7 @@ public class MedicineRepositoryImpl implements MedicineRepository {
     private Environment env;
 
     @Override
-    public List<Medicine> getMedicines(String kw, int page) {
+    public List<Medicine> getMedicines(Map<String, String> params, int page) {
         Session session = this.sessionFactoryBean.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
@@ -44,10 +47,24 @@ public class MedicineRepositoryImpl implements MedicineRepository {
         Root root = q.from(Medicine.class);
         q.select(root);
 
+        String kw = params.get("kw");
+        List<Predicate> predicates = new ArrayList<>();
         if (kw != null && !kw.isEmpty()) {
             Predicate p = b.like(root.get("name").as(String.class), String.format("%%%s%%", kw));
-            q.where(p);
+            predicates.add(p);
         }
+
+        String cateId = params.get("categoryId");
+
+        if (cateId != null && !cateId.isEmpty()) {
+            Predicate p2 = b.equal(root.get("category"), Integer.parseInt(cateId));
+            predicates.add(p2);
+        }
+
+        if (predicates.size() > 0) {
+            q.where(predicates.toArray(new Predicate[]{}));
+        }
+
         q.orderBy(b.desc(root.get("id")));
         Query query = session.createQuery(q);
 

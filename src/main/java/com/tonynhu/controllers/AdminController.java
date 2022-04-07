@@ -7,7 +7,9 @@ package com.tonynhu.controllers;
 import com.tonynhu.pojos.Category;
 import com.tonynhu.service.CategoryService;
 import com.tonynhu.service.MedicineService;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,8 +38,6 @@ public class AdminController {
     public void commonAttributes(Model model) {
         model.addAttribute("categories", this.categoryService.getCategories());
     }
-    
-  
 
     @RequestMapping("/")
     public String admin() {
@@ -47,9 +47,14 @@ public class AdminController {
     @RequestMapping("/medicine")
     public String medicine(Model model,
             @RequestParam(name = "kw", required = false) String kw,
+            @RequestParam(name = "categoryId", required = false, defaultValue = "") String categoryId,
             @RequestParam(name = "page", defaultValue = "1") Integer page) {
 
-        model.addAttribute("medicines", this.medicineService.getMedicines(kw, page));
+        Map<String, String> params = new HashMap<>();
+        params.put("kw", kw);
+        params.put("categoryId", categoryId);
+
+        model.addAttribute("medicines", this.medicineService.getMedicines(params, page));
         model.addAttribute("medicineCounter", this.medicineService.countMedicines());
         List<Category> cates = this.categoryService.getCategories();
         for (Category cate : cates) {

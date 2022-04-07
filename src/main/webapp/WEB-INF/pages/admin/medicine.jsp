@@ -25,7 +25,10 @@
         <ul class="nav nav-pills">
             <c:forEach items="${categories}" var="c">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">${c.name}</a>
+                    <c:url value="/admin/medicine" var="cateFilter">
+                        <c:param name="categoryId" value="${c.id}"/>
+                    </c:url>
+                    <a class="nav-link" href="${cateFilter}">${c.name}</a>
                 </li>
             </c:forEach>
         </ul>
