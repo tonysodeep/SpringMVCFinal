@@ -71,3 +71,17 @@ const deletePres = (id) => {
         })
     }
 }
+
+const pay = () => {
+    if (confirm("Are you sure to process this precription")) {
+        fetch(`/PrivateClinicsManagement/api/pay`, {
+            method: 'post'
+        }).then(res => {
+            if (res.status === 201) {
+                location.reload();
+            } else {
+                alert("Something wrong");
+            }
+        })
+    }
+}
