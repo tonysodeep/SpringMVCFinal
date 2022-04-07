@@ -18,7 +18,7 @@
                     <c:param name="page" value="${i}" />
                 </c:url>
                 <li class="page-item"><a class="page-link" href="${myAction}">${i}</a></li>
-                </c:forEach>
+            </c:forEach>
         </ul>
     </div>
     <div class="col d-flex flex-row-reverse" >
@@ -43,7 +43,8 @@
                     <h4 class="card-title">${m.name}</h4>
                     <p class="card-text">${m.price} VND</p>
                     <a href="<c:url value="/admin/medicine/${m.id}"/>" class="btn btn-primary">See Detail</a>
-                    <a href="#" class="btn btn-danger">add to Prescriptions</a>
+                    <a href="#" class="btn btn-warning">Update</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>
