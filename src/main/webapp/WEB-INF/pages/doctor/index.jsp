@@ -10,20 +10,6 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <h1 class="text-center text-info" >Schedule List </h1>
 
-<!--<div class ="row">
-<c:forEach items="${schedules}" var="s">
-    <div class="col-md-4 col-sm-12" style="padding: 10px">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">${s.clientFullname}</h4>
-                <p class="card-text">${s.clientPhone}</p>
-                <a href="<c:url value="/doctor/add-precription/${s.id}"/>" class="btn btn-danger">create Prescriptions</a>
-            </div>
-        </div>
-    </div>
-</c:forEach>
-</div>-->
-
 <c:forEach items="${schedules}" var="s">
     <div class="d-flex align-item-center justify-content-center">
         
