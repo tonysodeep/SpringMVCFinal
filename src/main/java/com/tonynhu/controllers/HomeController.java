@@ -23,9 +23,4 @@ public class HomeController {
     public String logIn() {
         return "login";
     }
-    
-    @RequestMapping("/admin-signup")
-    public String signUp() {
-        return "admin-signup";
-    }
 }

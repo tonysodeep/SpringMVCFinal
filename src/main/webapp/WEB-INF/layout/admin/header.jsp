@@ -33,9 +33,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value="/admin/medicine"/>">Medicine</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-info" href="">Prescription <span class="badge badge-danger">0</span></a>
-            </li>
         </ul>
     </div>
     <c:url value="/admin/medicine" var="homeAction"/>

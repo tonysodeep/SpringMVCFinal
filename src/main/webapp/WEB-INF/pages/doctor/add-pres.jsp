@@ -14,7 +14,7 @@
     <div class="col-3">
         <ul class="pagination nav nav-pills">
             <c:forEach begin="1" end="${Math.ceil(medicineCounter/6)}" var="i">
-                <c:url value="/admin/medicine" var="myAction">
+                <c:url value="/doctor/add-precription/${sheduleId}" var="myAction">
                     <c:param name="page" value="${i}" />
                 </c:url>
                 <li class="page-item"><a class="page-link" href="${myAction}">${i}</a></li>
@@ -25,7 +25,10 @@
         <ul class="nav nav-pills">
             <c:forEach items="${categories}" var="c">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">${c.name}</a>
+                    <c:url value="/doctor/add-precription/${sheduleId}" var="cateFilter">
+                        <c:param name="categoryId" value="${c.id}"/>
+                    </c:url>
+                    <a class="nav-link" href="${cateFilter}">${c.name}</a>
                 </li>
             </c:forEach>
         </ul>

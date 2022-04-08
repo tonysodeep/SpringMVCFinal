@@ -54,11 +54,13 @@ public class DoctorController {
     public String add(Model model,
             @RequestParam(name = "kw", required = false) String kw,
             @RequestParam(name = "page", defaultValue = "1") Integer page,
+            @RequestParam(name = "categoryId", required = false, defaultValue = "") String categoryId,
             HttpSession session,
             @PathVariable(name = "scheduleId") int id) {
         session.setAttribute("sheduleId", id);
         Map<String, String> params = new HashMap<>();
         params.put("kw", kw);
+        params.put("categoryId", categoryId);
         model.addAttribute("medicines", this.medicineService.getMedicines(params, page));
         model.addAttribute("medicineCounter", this.medicineService.countMedicines());
         return "doctor/add-pres";
