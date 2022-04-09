@@ -14,19 +14,19 @@
     <div class="d-flex align-item-center justify-content-center">
         <div class="card mb-3 w-75 shadow-dark">
             <div class="row g-0">
-                <div class="col-5">
-                    <label>Full name: </label></br>
-                    <label>Phone number: </label></br>
-                    <label>Booking date: </label></br>
-                    <label>Doctor's name: </label></br>
-                    <label>Status: </label>
+                <div class="col-5 p-15">
+                    <label><b>Full name: </b></label></br>
+                    <label><b>Phone number: </b></label></br>
+                    <label><b>Booking date: </b></label></br>
+                    <label><b>Doctor's name: </b></label></br>
+                    <label><b>Status: </b></label>
                 </div>
-                <div class="col-7 padd-15">
+                <div class="col-7 p-15">
                     <div class="card-body">
-                        <h5 class="card-title">${s.clientFullname}</h5>
-                        <p class="card-text"><b>${s.clientPhone}</b></p>
-                        <p class="card-text"><b>${s.bookingDate}</b></p>
-                        <p class="card-text"><b>${s.employeeId.fullname}</b></p>
+                        <p class="card-title">${s.clientFullname}<p>
+                        <p class="card-text">${s.clientPhone}</p>
+                        <p class="card-text">${s.bookingDate}</p>
+                        <p class="card-text">${s.employeeId.fullname}</p>
 
                         <c:if test="${s.prescription!=null}">
                             <div class="alert alert-danger">
