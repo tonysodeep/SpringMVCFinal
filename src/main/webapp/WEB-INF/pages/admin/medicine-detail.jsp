@@ -15,8 +15,8 @@
     </div>
     <div class="col-md-7 col-sm-12">
         <h1>${medicine.name}</h1>
-        <p>Description: ${medicine.description}</p>
         <h4>${medicine.price} VND</h4>
-        <p>Quanity: ${medicine.quanity}</p>
+        <h6>Description: ${medicine.description}</h6>        
+        <h6>Quanity: ${medicine.quanity}</h6>
     </div>
 </div>
