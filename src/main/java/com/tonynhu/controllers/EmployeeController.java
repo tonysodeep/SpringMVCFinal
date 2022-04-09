@@ -60,14 +60,4 @@ public class EmployeeController {
     public String logInView() {
         return "login";
     }
-
-    @RequestMapping("/default")
-    public String defaultAfterLogin(HttpServletRequest request) {
-        Employee e = employeeService.getEmployeeByEmail(request.getRemoteUser());
-        System.out.println(e.getRole());
-        if ("ADMIN".equals(e.getRole())) {
-            return "redirect:/admin/";
-        }
-        return "redirect:/doctor/";
-    }
 }

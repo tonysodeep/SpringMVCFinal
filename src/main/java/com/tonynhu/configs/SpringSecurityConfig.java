@@ -6,6 +6,8 @@ package com.tonynhu.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.tonynhu.handlers.LoginSuccessHandler;
+import com.tonynhu.handlers.LogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -27,40 +29,59 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
     "com.tonynhu.service",
-    "com.tonynhu.repository"
+    "com.tonynhu.repository",
+    "com.tonynhu.handlers"
 })
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-    
+
     @Autowired
     private UserDetailsService userDetailsService;
-    
+
+    @Autowired
+    private LoginSuccessHandler loginSuccessHandler;
+
+    @Autowired
+    private LogoutHandler logoutHandler;
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder b = new BCryptPasswordEncoder();
         return b;
     }
-    
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-     
+
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        
+
         http.formLogin().usernameParameter("email").passwordParameter("password");
-        
-        http.formLogin().loginPage("/login").defaultSuccessUrl("/default").failureUrl("/login?err");
-        
-        http.logout().logoutSuccessUrl("/login");
-        
+
+        http.formLogin().loginPage("/login")
+                .failureUrl("/login?err");
+
+        http.formLogin().successHandler(loginSuccessHandler);
+
+        http.logout().logoutSuccessHandler(logoutHandler);
+
+        http.exceptionHandling()
+                .accessDeniedPage("/login?accessDenied");
+
+//        http.authorizeRequests().antMatchers("/").permitAll()
+//                .antMatchers("/admin/**")
+//                .access("hasRole('ADMIN')")
+//                .antMatchers("/doctor/**")
+//                .access("hasRole('DOCTOR')");
+
         http.csrf().disable();
     }
-    
+
     @Bean
     public Cloudinary cloudinary() {
-        
+
         Cloudinary c = new Cloudinary(
                 ObjectUtils.asMap(
                         "cloud_name", "tonysodeep",
@@ -71,5 +92,5 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         );
         return c;
     }
-    
+
 }

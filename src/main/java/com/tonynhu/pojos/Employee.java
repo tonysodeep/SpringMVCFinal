@@ -55,8 +55,8 @@ public class Employee implements Serializable {
         this.confirmPassword = confirmPassword;
     }
 
-    public static final String DOCTOR = "ROLE_DOCTOR";
-    public static final String ADMIN = "ROLE_ADMIN";
+    public static final String DOCTOR = "DOCTOR";
+    public static final String ADMIN = "ADMIN";
 
     /**
      * @return the file
