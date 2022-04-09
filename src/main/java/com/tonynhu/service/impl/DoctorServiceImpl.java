@@ -4,6 +4,7 @@
  */
 package com.tonynhu.service.impl;
 
+import com.tonynhu.pojos.Employee;
 import com.tonynhu.pojos.Schedule;
 import com.tonynhu.repository.DoctorRepository;
 import com.tonynhu.service.DoctorService;
@@ -24,6 +25,11 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<Schedule> getSchedules(String kw, int page) {
         return doctorRepository.getSchedules(kw, page);
+    }
+
+    @Override
+    public List<Employee> getDoctors(String kw, int page) {
+        return doctorRepository.getDoctors(kw, page);
     }
 
 }
