@@ -9,19 +9,19 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<h1 class="text-center">Doctor page</h1>
+<h1 class="text-center">Doctor Information</h1>
 
 <div class ="row">
     <c:forEach items="${doctors}" var="d">
-        <div class="d-flex align-item-center justify-content-center">
-            <div class="card mb-3">
+        <div class="d-flex align-item-center justify-content-center w-100">
+            <div class="card mb-3 w-75">
               <div class="row g-0">
                 <div class="col-5">
-                  <img src="${d.image}" class="img-fluid" alt="${d.id}" width="40">
+                  <img src="${d.image}" class="img-fluid w-75" alt="${d.id}">
                 </div>
                 <div class="col-7 p-15">
                   <div class="card-body">
-                      <h4 class="card-title"><b>Họ Tên: </b> ${d.fullname}</h4>
+                      <h3 class="card-title">${d.fullname}</h3>
                       <p class="card-text"><b>Email: </b> ${d.email}</p>
                       <p class="card-text"><b>Phone number: </b> ${d.mobile}</p>
                       <p class="card-text"><b>Address: </b> ${d.address}</p>
