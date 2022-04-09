@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
 
-    <a class="navbar-brand" href="<c:url value="/admin/"/>">E-commerce Website</a>
+    <a class="navbar-brand" href="<c:url value="/doctor/"/>">E-commerce Website</a>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -28,8 +28,24 @@
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value="/doctor/"/>">Schedule</a>
             </li>
+            <c:if test="${scheduleId != null}">
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="<c:url value="/doctor/prescription/${sheduleId}"/>">Prescription <span class="badge badge-danger presCounter">${presStats.totalQuantity}</span></a>
+                </li>
+            </c:if>
+
             <li class="nav-item">
-                <a class="nav-link text-info" href="<c:url value="/doctor/prescription/${sheduleId}"/>">Prescription <span class="badge badge-danger presCounter">${presStats.totalQuantity}</span></a>
+                <a class="nav-link text-info" 
+                   href="#">
+                    <img src="${pageContext.session.getAttribute("currentUser").image}" 
+                         class="rounded-circle" 
+                         width="40"
+                         alt="user_avatar"/>
+                    ${pageContext.request.userPrincipal.name}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-success" href="<c:url value="/logout"/>">Logout</a>
             </li>
         </ul>
     </div>

@@ -33,8 +33,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value="/admin/medicine"/>">Medicine</a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link text-info" href="">Prescription <span class="badge badge-danger">0</span></a>
+                <a class="nav-link text-info" 
+                   href="#">
+                    <img src="${pageContext.session.getAttribute("currentUser").image}" 
+                         class="rounded-circle" 
+                         width="40"
+                         alt="user_avatar"/>
+                    ${pageContext.request.userPrincipal.name}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-success" href="<c:url value="/logout"/>">Logout</a>
             </li>
         </ul>
     </div>

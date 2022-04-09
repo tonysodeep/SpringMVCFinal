@@ -21,17 +21,20 @@
         <div class="container">
             <div class="box shadow-dark">
                 <h1>LOG IN</h1>
-                <div class="mb-3 padd-15">
-                    <label for="inputEmail" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="input-email" placeholder="Enter your Email" required>
-                </div>
-                <div class="mb-3 padd-15">
-                    <label for="inputPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="input-pass" placeholder="Enter your Password" required>
-                </div>
-                <div class="button padd-15">
-                    <a role="button" name="Log In" href="" class="btn btn-primary">Log In</a>
-                </div>
+                <c:url value="/login" var="action"/>
+                <form method="post" action="${action}">
+                    <div class="mb-3 padd-15 form-group">
+                        <label for="inputEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" name="email" placeholder="Enter your Email" required>
+                    </div>
+                    <div class="mb-3 padd-15 form-group">
+                        <label for="inputPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Enter your Password" required>
+                    </div> 
+                    <div class="button padd-15">
+                        <input type="submit" value="Login" class="btn padd-15 btn-danger"/>
+                    </div>
+                </form>
             </div>
         </div>
     </body>

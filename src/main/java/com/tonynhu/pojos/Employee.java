@@ -17,10 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -38,21 +41,52 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Employee.findByRole", query = "SELECT e FROM Employee e WHERE e.role = :role")})
 public class Employee implements Serializable {
 
+    /**
+     * @return the confirmPassword
+     */
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    /**
+     * @param confirmPassword the confirmPassword to set
+     */
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public static final String DOCTOR = "DOCTOR";
+    public static final String ADMIN = "ADMIN";
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "{user.invalidEmail}")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "{user.notNullErr}")
     @Size(min = 1, max = 45)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @NotNull(message = "{user.notNullErr}")
+    @Size(min = 1, max = 45, message = "{user.lenErr}")
     @Column(name = "fullname")
     private String fullname;
     @Lob
@@ -60,12 +94,12 @@ public class Employee implements Serializable {
     @Column(name = "address")
     private String address;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "{user.notNullErr}")
     @Size(min = 1, max = 45)
     @Column(name = "mobile")
     private String mobile;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "{user.notNullErr}")
     @Lob
     @Size(min = 1, max = 2147483647)
     @Column(name = "password")
@@ -75,12 +109,16 @@ public class Employee implements Serializable {
     @Column(name = "image")
     private String image;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "{user.notNullErr}")
     @Size(min = 1, max = 45)
     @Column(name = "role")
     private String role;
     @OneToMany(mappedBy = "employeeId")
     private List<Schedule> scheduleList;
+    @Transient
+    private MultipartFile file;
+    @Transient
+    private String confirmPassword;
 
     public Employee() {
     }
@@ -195,5 +233,5 @@ public class Employee implements Serializable {
     public String toString() {
         return "com.tonynhu.pojos.Employee[ id=" + id + " ]";
     }
-    
+
 }
