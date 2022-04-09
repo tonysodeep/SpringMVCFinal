@@ -5,11 +5,13 @@
 package com.tonynhu.service;
 
 import com.tonynhu.pojos.Employee;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
  * @author hyngu
  */
-public interface EmployeeService {
+public interface EmployeeService extends UserDetailsService{
      boolean addEmployee(Employee employee);
+     Employee getEmployeeByEmail(String email);
 }

@@ -71,22 +71,7 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("UTF-8");
-
         return resolver;
-    }
-
-    @Bean
-    public Cloudinary cloudinary() {
-
-        Cloudinary c = new Cloudinary(
-                ObjectUtils.asMap(
-                        "cloud_name", "tonysodeep",
-                        "api_key", "887976783892321",
-                        "api_secret", "yL2d2QXta1A_5D8d1kDpFvF0wtM",
-                        "secure", true
-                )
-        );
-        return c;
     }
 
     @Bean

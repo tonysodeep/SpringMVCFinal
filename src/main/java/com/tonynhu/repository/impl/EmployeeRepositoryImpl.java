@@ -6,6 +6,10 @@ package com.tonynhu.repository.impl;
 
 import com.tonynhu.pojos.Employee;
 import com.tonynhu.repository.EmployeeRepository;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -33,6 +37,21 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public Employee getEmployeeByEmail(String email) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Employee> q = b.createQuery(Employee.class);
+        Root root = q.from(Employee.class);
+        q.select(root);
+        
+        q.where(b.equal(root.get("email"), email));
+        
+        Query query = session.createQuery(q);
+        return (Employee) query.getSingleResult();
     }
     
 }

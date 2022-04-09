@@ -10,10 +10,16 @@ import com.tonynhu.pojos.Employee;
 import com.tonynhu.repository.EmployeeRepository;
 import com.tonynhu.service.EmployeeService;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +27,7 @@ import org.springframework.stereotype.Service;
  *
  * @author hyngu
  */
-@Service
+@Service("userDetailsService" )
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
@@ -45,8 +51,24 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         }
         employee.setPassword(this.passwordEncoder.encode(employee.getPassword()));
-        
+
         return this.employeeRepository.addEmployee(employee);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Employee employee = this.employeeRepository.getEmployeeByEmail(email);
+        if (email == null) {
+            throw new UsernameNotFoundException("Invail Email");
+        }
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority(employee.getRole()));
+        return new User(employee.getEmail(), employee.getPassword(), authorities);
+    }
+
+    @Override
+    public Employee getEmployeeByEmail(String email) {
+        return this.employeeRepository.getEmployeeByEmail(email);
     }
 
 }

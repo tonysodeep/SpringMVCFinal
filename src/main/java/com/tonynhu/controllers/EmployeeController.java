@@ -6,6 +6,7 @@ package com.tonynhu.controllers;
 
 import com.tonynhu.pojos.Employee;
 import com.tonynhu.service.EmployeeService;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -44,7 +45,7 @@ public class EmployeeController {
         String errMsg;
         if (employee.getPassword().equals(employee.getConfirmPassword())) {
             if (this.employeeService.addEmployee(employee) == true) {
-                return "redirect:/";
+                return "redirect:/login";
             } else {
                 errMsg = "Somethig wrong";
             }
@@ -53,5 +54,20 @@ public class EmployeeController {
         }
         model.addAttribute("errMsg", errMsg);
         return "register";
+    }
+
+    @RequestMapping("/login")
+    public String logInView() {
+        return "login";
+    }
+
+    @RequestMapping("/default")
+    public String defaultAfterLogin(HttpServletRequest request) {
+        Employee e = employeeService.getEmployeeByEmail(request.getRemoteUser());
+        System.out.println(e.getRole());
+        if ("ADMIN".equals(e.getRole())) {
+            return "redirect:/admin/";
+        }
+        return "redirect:/doctor/";
     }
 }

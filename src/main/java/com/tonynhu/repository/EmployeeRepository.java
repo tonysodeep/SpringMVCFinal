@@ -12,4 +12,5 @@ import com.tonynhu.pojos.Employee;
  */
 public interface EmployeeRepository {
     boolean addEmployee(Employee employee);
+    Employee getEmployeeByEmail(String email);
 }

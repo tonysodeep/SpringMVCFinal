@@ -31,6 +31,12 @@
             <li class="nav-item">
                 <a class="nav-link text-info" href="<c:url value="/doctor/prescription/${sheduleId}"/>">Prescription <span class="badge badge-danger presCounter">${presStats.totalQuantity}</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-info" href="#">${pageContext.request.userPrincipal.name}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-success" href="<c:url value="/logout"/>">Logout</a>
+            </li>
         </ul>
     </div>
     <c:url value="/admin/medicine" var="homeAction"/>

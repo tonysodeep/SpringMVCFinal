@@ -33,6 +33,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value="/admin/medicine"/>">Medicine</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-info" href="#">${pageContext.request.userPrincipal.name}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-success" href="<c:url value="/logout"/>">Logout</a>
+            </li>
         </ul>
     </div>
     <c:url value="/admin/medicine" var="homeAction"/>
