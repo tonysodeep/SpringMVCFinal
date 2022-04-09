@@ -32,6 +32,7 @@
                             <div class="alert alert-danger">
                                 <p class="card-text"><b>Have Prescription</b></p>
                             </div>
+                             <a href="<c:url value="/doctor/precription-detail/${s.prescription.id}"/>" class="btn btn-danger">Prescriptions Detail</a>
                         </c:if>
                         <c:if test="${s.prescription==null}">
                             <div class="alert alert-danger">
@@ -39,7 +40,6 @@
                             </div>
                             <a href="<c:url value="/doctor/add-precription/${s.id}"/>" class="btn btn-danger">create Prescriptions</a>
                         </c:if>
-
                     </div>
                 </div>
             </div>
