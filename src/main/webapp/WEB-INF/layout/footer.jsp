@@ -5,7 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div class="jumbotron">
-    <h1>Private Clinic </h1>
-    <p>hy nhu xuan &copy; 2022</p>
+<div class="jumbotron d-flex align-item-center justify-content-center">
+    <div class="footer">
+        <h3>Private Clinic Management</h3>
+        <p class="text-center">hy nhu xuan &copy; 2022</p>
+    </div>
 </div>

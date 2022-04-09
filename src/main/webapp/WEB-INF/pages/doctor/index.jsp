@@ -14,36 +14,34 @@
     <div class="d-flex align-item-center justify-content-center">
         <div class="card mb-3 w-75 shadow-dark">
             <div class="row g-0">
-                <div class="col-5 p-15">
-                    <label><b>Full name: </b></label></br>
-                    <label><b>Phone number: </b></label></br>
-                    <label><b>Booking date: </b></label></br>
-                    <label><b>Doctor's name: </b></label></br>
-                    <label><b>Status: </b></label>
+                <div class="col-5 p-2 ml-3">
+                    <p><br><b>Full name: </b></p>
+                    <p><b>Phone number: </b></p>
+                    <p><b>Booking date: </b></p>
+                    <p><b>Doctor's name: </b></p>
+                    <p><b>Status: </b></p>
                 </div>
-                <div class="col-7 p-15">
-                    <div class="card-body">
-                        <p class="card-title">${s.clientFullname}<p>
-                        <p class="card-text">${s.clientPhone}</p>
-                        <p class="card-text">${s.bookingDate}</p>
-                        <p class="card-text">${s.employeeId.fullname}</p>
+                <div class="col-6 p-2">
+                    <p><br>${s.clientFullname}<p>
+                    <p>${s.clientPhone}</p>
+                    <p>${s.bookingDate}</p>
+                    <p>${s.employeeId.fullname}</p>
 
-                        <c:if test="${s.prescription!=null}">
-                            <div class="alert alert-danger">
-                                <p class="card-text"><b>Have Prescription</b></p>
-                            </div>
-                        </c:if>
-                        <c:if test="${s.prescription==null}">
-                            <div class="alert alert-danger">
-                                <p class="card-text"><b>Not have Prescription</b></p>
-                            </div>
-                            <a href="<c:url value="/doctor/add-precription/${s.id}"/>" class="btn btn-danger">create Prescriptions</a>
-                        </c:if>
-
-                    </div>
+                    <c:if test="${s.prescription!=null}">
+                        <div class="alert alert-danger">
+                            <p class="card-text"><b>Have Prescription</b></p>
+                        </div>
+                    </c:if>
+                    <c:if test="${s.prescription==null}">
+                        <div class="alert alert-danger">
+                            <p class="card-text"><b>Not have Prescription</b></p>
+                        </div>
+                        <a href="<c:url value="/doctor/add-precription/${s.id}"/>" class="btn btn-danger mr-3">Create prescription</a>
+                    </c:if>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </c:forEach>
 

@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
 
-    <a class="navbar-brand" href="<c:url value="/doctor/"/>">E-commerce Website</a>
+    <a class="navbar-brand" href="<c:url value="/doctor/"/>">Private Clinic Management</a>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
