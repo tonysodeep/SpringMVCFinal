@@ -18,8 +18,7 @@
                     <p><b>Status: </b></p>
                 </div>
                 <div class="col-6 p-2">
-                    <p><br>${s.clientFullname}
-                    <p>
+                    <p><br>${s.clientFullname}</p>
                     <p>${s.clientPhone}</p>
                     <p>${s.bookingDate}</p>
                     <p>${s.employeeId.fullname}</p>
@@ -41,5 +40,4 @@
             </div>
         </div>
     </div>
-</div>
 </c:forEach>

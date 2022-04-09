@@ -21,12 +21,14 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author hyngu
  */
 @Repository
+@Transactional
 public class StatsRepositoryImpl implements StatsRepository {
 
     @Autowired
