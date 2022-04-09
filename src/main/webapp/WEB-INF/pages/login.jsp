@@ -31,7 +31,6 @@
                 </div>
                 <div class="button padd-15">
                     <a role="button" name="Log In" href="" class="btn btn-primary">Log In</a>
-                    <a role="button" name="Switch to Sign Up" href="<c:url value="/admin-signup"/>" class="btn btn-danger">Switch to Sign Up</a>
                 </div>
             </div>
         </div>
