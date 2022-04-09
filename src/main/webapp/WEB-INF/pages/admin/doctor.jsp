@@ -25,7 +25,6 @@
                       <p class="card-text"><b>Email: </b> ${d.email}</p>
                       <p class="card-text"><b>Phone number: </b> ${d.mobile}</p>
                       <p class="card-text"><b>Address: </b> ${d.address}</p>
-                      <a href="#" class="btn btn-primary">See Detail</a>
                       <a href="#" class="btn btn-warning">Update</a>
                       <a href="#" class="btn btn-danger">Delete</a>
                   </div>
