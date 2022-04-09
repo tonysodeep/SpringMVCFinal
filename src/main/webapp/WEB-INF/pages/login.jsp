@@ -31,7 +31,9 @@
                         <label for="inputPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" name="password" placeholder="Enter your Password" required>
                     </div> 
-                    <input type="submit" value="Login" class="btn padd-15 btn-danger"/>
+                    <div class="button padd-15">
+                        <input type="submit" value="Login" class="btn padd-15 btn-danger"/>
+                    </div>
                 </form>
             </div>
         </div>
