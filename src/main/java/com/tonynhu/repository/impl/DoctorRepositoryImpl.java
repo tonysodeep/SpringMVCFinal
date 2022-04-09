@@ -4,8 +4,10 @@
  */
 package com.tonynhu.repository.impl;
 
+import com.tonynhu.pojos.Employee;
 import com.tonynhu.pojos.Schedule;
 import com.tonynhu.repository.DoctorRepository;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -51,6 +53,36 @@ public class DoctorRepositoryImpl implements DoctorRepository {
         q.orderBy(b.desc(root.get("id")));
         Query query = session.createQuery(q);
 
+        int pageSize = Integer.parseInt(env.getProperty("info.page_size"));
+        int start = (page - 1) * pageSize;
+
+        query.setMaxResults(pageSize);
+        query.setFirstResult(start);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Employee> getDoctors(String kw, int page) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Employee> q = b.createQuery(Employee.class);
+        Root root = q.from(Employee.class);
+        q.select(root);
+        List<Predicate> predicates = new ArrayList<>();
+
+        if (kw != null && !kw.isEmpty()) {
+            Predicate p = b.like(root.get("fullname").as(String.class), String.format("%%%s%%", kw));
+            predicates.add(p);
+        }
+        String role = "DOCTOR";
+        Predicate p2 = b.like(root.get("role").as(String.class), String.format("%%%s%%", role));
+        predicates.add(p2);
+        if (!predicates.isEmpty()) {
+            q.where(predicates.toArray(new Predicate[]{}));
+        }
+        q.orderBy(b.desc(root.get("id")));
+        Query query = session.createQuery(q);
         int pageSize = Integer.parseInt(env.getProperty("info.page_size"));
         int start = (page - 1) * pageSize;
 

@@ -4,6 +4,7 @@
  */
 package com.tonynhu.service;
 
+import com.tonynhu.pojos.Employee;
 import com.tonynhu.pojos.Schedule;
 import java.util.List;
 
@@ -13,4 +14,5 @@ import java.util.List;
  */
 public interface DoctorService {
      List<Schedule> getSchedules(String kw, int page);
+     List<Employee> getDoctors(String kw, int page);
 }

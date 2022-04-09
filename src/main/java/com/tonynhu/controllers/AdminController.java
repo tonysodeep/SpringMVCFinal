@@ -5,7 +5,10 @@
 package com.tonynhu.controllers;
 
 import com.tonynhu.pojos.Category;
+import com.tonynhu.pojos.Employee;
 import com.tonynhu.service.CategoryService;
+import com.tonynhu.service.DoctorService;
+import com.tonynhu.service.EmployeeService;
 import com.tonynhu.service.MedicineService;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +36,9 @@ public class AdminController {
 
     @Autowired
     private MedicineService medicineService;
+
+    @Autowired
+    private DoctorService doctorService;
 
     @ModelAttribute
     public void commonAttributes(Model model) {
@@ -64,7 +70,13 @@ public class AdminController {
     }
 
     @RequestMapping("/doctor")
-    public String doctor() {
+    public String doctor(
+            Model model,
+            @RequestParam(name = "kw", required = false) String kw,
+            @RequestParam(name = "page", defaultValue = "1") Integer page) {
+        List<Employee> employe = this.doctorService.getDoctors(kw, 1);
+        System.out.println(employe.size());
+        model.addAttribute("doctors", this.doctorService.getDoctors(kw, page));
         return "admin/doctor";
     }
 
