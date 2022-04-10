@@ -10,5 +10,12 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <h1 class="text-center text-info" >Dashboard  </h1>
-
+<div class="row">
+    <div class="col">
+        <input type="submit" value="PRODUCT" class="button w-100 p-5 btn-warning"/>
+    </div>
+    <div class="col">
+        <input type="submit" value="EMPLOYEE" class="button w-100 p-5 btn-primary"/>
+    </div>
+</div>
 
