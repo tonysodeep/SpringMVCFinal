@@ -74,6 +74,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="header" value="/WEB-INF/layout/doctor/header.jsp"/>
         <put-attribute name="content" value="/WEB-INF/pages/doctor/prescription.jsp"/>
     </definition>
-    
 </tiles-definitions>
 

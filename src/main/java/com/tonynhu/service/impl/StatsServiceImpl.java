@@ -35,14 +35,14 @@ public class StatsServiceImpl implements StatsService {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date fd = null;
         Date td = null;
-        if (fromDate != null) {
+        if (fromDate != null && !fromDate.isEmpty()) {
             try {
                 fd = format.parse(fromDate);
             } catch (ParseException ex) {
                 Logger.getLogger(StatsServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (toDate != null) {
+        if (toDate != null && !toDate.isEmpty()) {
             try {
                 td = format.parse(toDate);
             } catch (ParseException ex) {
