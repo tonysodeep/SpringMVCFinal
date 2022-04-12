@@ -33,7 +33,7 @@
                         <div class="alert alert-danger">
                             <p class="card-text"><b>Not have Prescription</b></p>
                         </div>
-                        <a href="<c:url value=" /doctor/add-precription/${s.id}" />" class="btn
+                        <a href="<c:url value="/doctor/add-precription/${s.id}" />" class="btn
                            btn-danger mr-3">Create prescription</a>
                     </c:if>
                 </div>
