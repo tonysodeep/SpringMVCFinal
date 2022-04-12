@@ -15,21 +15,21 @@
     <c:forEach items="${doctors}" var="d">
         <div class="d-flex align-item-center justify-content-center">
             <div class="card mb-3">
-              <div class="row g-0">
-                <div class="col-5">
-                  <img src="${d.image}" class="img-fluid" alt="${d.id}" width="40">
+                <div class="row g-0">
+                    <div class="col-5">
+                        <img src="${d.image}" class="img-fluid" alt="${d.id}" width="40">
+                    </div>
+                    <div class="col-7 p-15">
+                        <div class="card-body">
+                            <h4 class="card-title"><b>Họ Tên: </b> ${d.fullname}</h4>
+                            <p class="card-text"><b>Email: </b> ${d.email}</p>
+                            <p class="card-text"><b>Phone number: </b> ${d.mobile}</p>
+                            <p class="card-text"><b>Address: </b> ${d.address}</p>
+                            <a href="<c:url value="/update-employee/${d.id}"/>" class="btn btn-warning">Update</a>
+                            <a href="#" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-7 p-15">
-                  <div class="card-body">
-                      <h4 class="card-title"><b>Họ Tên: </b> ${d.fullname}</h4>
-                      <p class="card-text"><b>Email: </b> ${d.email}</p>
-                      <p class="card-text"><b>Phone number: </b> ${d.mobile}</p>
-                      <p class="card-text"><b>Address: </b> ${d.address}</p>
-                      <a href="#" class="btn btn-warning">Update</a>
-                      <a href="#" class="btn btn-danger">Delete</a>
-                  </div>
-                </div>
-              </div>
             </div>
         </div>
     </c:forEach>

@@ -14,11 +14,13 @@ import java.util.Map;
  */
 public interface MedicineService {
 
-    List<Medicine> getMedicines(Map<String,String> params, int page);
+    List<Medicine> getMedicines(Map<String, String> params, int page);
 
     int countMedicines();
 
     boolean addOrUpdateProduct(Medicine m);
 
     Medicine getMedicineById(int id);
+
+    void deleteMedicine(Medicine medicine);
 }

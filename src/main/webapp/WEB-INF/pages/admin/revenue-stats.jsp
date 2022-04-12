@@ -6,15 +6,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Private Clinic Management</title>
-    </head>
-    <body>
-        <h1 class="text-center text-info">PRODUCT STATS</h1>
-        <div class="row">
+
+<h1 class="text-center text-info">PRODUCT STATS</h1>
+<div class="row">
     <div class="col-md-5">
         <table class="table">
             <tr>
@@ -41,11 +35,10 @@
     <c:forEach items="${stats}" var="s">
         labels.push('${s[1]}')
         data.push(${s[0]})
-    </c:forEach> 
+    </c:forEach>
     window.onload = () => {
         let ctx = document.getElementById("myChart").getContext("2d")
         drawBarChart(ctx, labels, data)
     };
 </script>
-    </body>
-</html>
+

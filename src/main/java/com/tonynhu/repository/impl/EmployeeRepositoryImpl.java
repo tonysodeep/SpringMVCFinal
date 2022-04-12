@@ -22,16 +22,24 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class EmployeeRepositoryImpl implements EmployeeRepository{
+public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Autowired
     private LocalSessionFactoryBean sessionFactoryBean;
-    
+
     @Override
     public boolean addEmployee(Employee employee) {
         Session s = this.sessionFactoryBean.getObject().getCurrentSession();
         try {
-            s.save(employee);
+            if (employee.getId() == null) {
+                s.save(employee);
+            } else {
+                Employee updateEmployee = getEmployeeById(employee.getId());
+                updateEmployee.setFullname(employee.getFullname());
+                updateEmployee.setMobile(employee.getMobile());
+                updateEmployee.setAddress(employee.getAddress());
+                s.save(updateEmployee);
+            }
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -47,11 +55,17 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
         CriteriaQuery<Employee> q = b.createQuery(Employee.class);
         Root root = q.from(Employee.class);
         q.select(root);
-        
+
         q.where(b.equal(root.get("email"), email));
-        
+
         Query query = session.createQuery(q);
         return (Employee) query.getSingleResult();
     }
-    
+
+    @Override
+    public Employee getEmployeeById(int id) {
+        Session s = this.sessionFactoryBean.getObject().getCurrentSession();
+        return s.get(Employee.class, id);
+    }
+
 }

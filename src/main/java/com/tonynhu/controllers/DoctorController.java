@@ -4,13 +4,11 @@
  */
 package com.tonynhu.controllers;
 
-import com.tonynhu.pojos.Category;
 import com.tonynhu.pojos.Pres;
 import com.tonynhu.service.DoctorService;
 import com.tonynhu.service.MedicineService;
 import com.tonynhu.utils.Utils;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

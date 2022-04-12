@@ -12,9 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -59,5 +63,31 @@ public class EmployeeController {
     @RequestMapping("/login")
     public String logInView() {
         return "login";
+    }
+
+    @RequestMapping("/update-employee/{employeeId}")
+    public String updateEmployeeView(Model model,
+            @PathVariable(name = "employeeId") int id) {
+        Employee employee = employeeService.getEmployeeById(id);
+        System.out.println("get from db" + employee.getId());
+        System.out.println(employee.getFullname());
+        model.addAttribute("employeeUpdate", employee);
+        return "admin/updateEmployee";
+    }
+
+    @PostMapping("/update-employee/{employeeId}")
+    public String updateEmployee(Model model,
+            @ModelAttribute(value = "medicine") Employee existEmp,
+            @PathVariable(name = "employeeId") int id) {
+        Employee employee = employeeService.getEmployeeById(id);
+        employee.setFullname(existEmp.getFullname());
+        employee.setMobile(existEmp.getMobile());
+        employee.setAddress(existEmp.getAddress());
+        if (this.employeeService.addEmployee(employee)) {
+            return "redirect:/admin/doctor";
+        } else {
+            model.addAttribute("errMsg", "Something wrong please try agian");
+            return "add-medicine";
+        }
     }
 }

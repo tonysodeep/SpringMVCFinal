@@ -4,6 +4,7 @@
  */
 package com.tonynhu.controllers;
 
+import com.tonynhu.pojos.Employee;
 import com.tonynhu.pojos.Medicine;
 import com.tonynhu.service.CategoryService;
 import com.tonynhu.service.MedicineService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,5 +49,39 @@ public class MedicineController {
         }
     }
 
-  
+    @RequestMapping("/update-medicine/{medicineId}")
+    public String updateMedicineView(Model model,
+            @PathVariable(name = "medicineId") int id) {
+
+        Medicine medicine = medicineService.getMedicineById(id);
+        System.out.println("descritption " + medicine.getDescription());
+        model.addAttribute("medicineUpdate", medicine);
+        return "admin/updateMedicine";
+    }
+
+    @PostMapping("/update-medicine/{medicineId}")
+    public String updateMedicine(Model model,
+            @ModelAttribute(value = "medicineUpdate") Medicine medicine,
+            @PathVariable(name = "medicineId") int id) {
+        System.out.println("controller id" + id);
+        Medicine existMedicine = medicineService.getMedicineById(id);
+        existMedicine.setName(medicine.getName());
+        existMedicine.setPrice(medicine.getPrice());
+        existMedicine.setDescription(medicine.getDescription());
+        if (this.medicineService.addOrUpdateProduct(medicine)) {
+            return "redirect:/admin/medicine";
+        } else {
+            model.addAttribute("errMsg", "Something wrong please try agian");
+            return "addmin/medicine";
+        }
+    }
+
+    @RequestMapping("/del-medi/{medicineId}")
+    public String deleteMedicine(Model model,
+            @PathVariable(name = "medicineId") int id) {
+        Medicine existMedicine = medicineService.getMedicineById(id);
+        this.medicineService.deleteMedicine(existMedicine);
+        return "redirect:/admin/medicine";
+    }
+
 }

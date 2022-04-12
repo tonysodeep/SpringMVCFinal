@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
  *
  * @author hyngu
  */
-@Service("userDetailsService" )
+@Service("userDetailsService")
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
@@ -41,18 +41,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public boolean addEmployee(Employee employee) {
-        if (employee.getFile() != null) {
-            try {
-                Map res = this.cloudinary.uploader().upload(employee.getFile().
-                        getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-                employee.setImage((String) res.get("secure_url"));
-            } catch (IOException ex) {
-                ex.printStackTrace();
+        System.out.println("check add emple" + employee.getId());
+        if (employee.getId() != null) {
+            return this.employeeRepository.addEmployee(employee);
+        } else {
+            if (employee.getFile() != null) {
+                try {
+                    Map res = this.cloudinary.uploader().upload(employee.getFile().
+                            getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                    employee.setImage((String) res.get("secure_url"));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
+            employee.setPassword(this.passwordEncoder.encode(employee.getPassword()));
+            return this.employeeRepository.addEmployee(employee);
         }
-        employee.setPassword(this.passwordEncoder.encode(employee.getPassword()));
-
-        return this.employeeRepository.addEmployee(employee);
     }
 
     @Override
@@ -69,6 +73,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getEmployeeByEmail(String email) {
         return this.employeeRepository.getEmployeeByEmail(email);
+    }
+
+    @Override
+    public Employee getEmployeeById(int i) {
+        return this.employeeRepository.getEmployeeById(i);
     }
 
 }

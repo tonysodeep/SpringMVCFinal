@@ -33,13 +33,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <put-attribute name="content" value="/WEB-INF/pages/admin/doctor.jsp"/>
     </definition>
     
-      <definition name="admin/cates-stats" extends="baseLayout">
+    <definition name="admin/updateEmployee" extends="baseLayout">
+        <put-attribute name="title" value="Administration"/>
+        <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/pages/admin/update-employee.jsp"/>
+    </definition>
+    
+     <definition name="admin/updateMedicine" extends="baseLayout">
+        <put-attribute name="title" value="Administration"/>
+        <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/pages/admin/update-medicine.jsp"/>
+    </definition>
+    
+    <definition name="admin/cates-stats" extends="baseLayout">
         <put-attribute name="title" value="Administration"/>
         <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
         <put-attribute name="content" value="/WEB-INF/pages/admin/cates-stats.jsp"/>
     </definition>
     
-      <definition name="admin/revenue-stats" extends="baseLayout">
+    <definition name="admin/revenue-stats" extends="baseLayout">
         <put-attribute name="title" value="Administration"/>
         <put-attribute name="header" value="/WEB-INF/layout/admin/header.jsp"/>
         <put-attribute name="content" value="/WEB-INF/pages/admin/revenue-stats.jsp"/>

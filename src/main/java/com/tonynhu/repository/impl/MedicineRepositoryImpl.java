@@ -4,6 +4,7 @@
  */
 package com.tonynhu.repository.impl;
 
+import com.tonynhu.pojos.Employee;
 import com.tonynhu.pojos.Medicine;
 import com.tonynhu.repository.MedicineRepository;
 import java.util.ArrayList;
@@ -87,19 +88,35 @@ public class MedicineRepositoryImpl implements MedicineRepository {
     @Override
     public boolean addOrUpdateProduct(Medicine m) {
         Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        System.out.println("medi id ------------"+m.getId());
         try {
-            session.save(m);
+            if (m.getId() == null) {
+                session.save(m);
+            } else {
+                Medicine updateMedicine = this.getMedicineById(m.getId());
+                updateMedicine.setImage(m.getName());
+                updateMedicine.setDescription(m.getDescription());
+                updateMedicine.setPrice(m.getPrice());
+                session.save(updateMedicine);
+            }
             return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     @Override
     public Medicine getMedicineById(int id) {
         Session s = this.sessionFactoryBean.getObject().getCurrentSession();
         return s.get(Medicine.class, id);
+    }
+
+    @Override
+    public void deleteMedicine(Medicine medicine) {
+         Session s = this.sessionFactoryBean.getObject().getCurrentSession();
+         s.delete(medicine);
+         return;
     }
 
 }

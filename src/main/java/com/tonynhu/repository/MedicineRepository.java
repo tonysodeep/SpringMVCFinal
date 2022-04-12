@@ -21,4 +21,6 @@ public interface MedicineRepository {
     boolean addOrUpdateProduct(Medicine m);
 
     Medicine getMedicineById(int id);
+    
+    void deleteMedicine(Medicine medicine);
 }

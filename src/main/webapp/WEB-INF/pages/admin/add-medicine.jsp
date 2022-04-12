@@ -16,6 +16,7 @@
         </div>
     </c:if>
 
+    <c:url value="" var="action"/>
     <form:form method="post" action="" modelAttribute="medicine" enctype="multipart/form-data">
         <div class="form-group">
             <label>Product name</label>

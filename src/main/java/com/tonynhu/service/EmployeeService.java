@@ -11,7 +11,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  *
  * @author hyngu
  */
-public interface EmployeeService extends UserDetailsService{
-     boolean addEmployee(Employee employee);
-     Employee getEmployeeByEmail(String email);
+public interface EmployeeService extends UserDetailsService {
+
+    boolean addEmployee(Employee employee);
+
+    Employee getEmployeeByEmail(String email);
+
+    Employee getEmployeeById(int id);
 }

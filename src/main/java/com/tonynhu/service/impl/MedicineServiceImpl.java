@@ -31,7 +31,7 @@ public class MedicineServiceImpl implements MedicineService {
     private Cloudinary cloudinary;
 
     @Override
-    public List<Medicine> getMedicines(Map<String,String> params, int page) {
+    public List<Medicine> getMedicines(Map<String, String> params, int page) {
         return this.medicineRepository.getMedicines(params, page);
     }
 
@@ -42,22 +42,34 @@ public class MedicineServiceImpl implements MedicineService {
 
     @Override
     public boolean addOrUpdateProduct(Medicine m) {
-        if (m.getFile() != null) {
-            try {
-                Map res = this.cloudinary.uploader().upload(m.getFile().
-                        getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-                m.setImage((String) res.get("secure_url"));
-            } catch (IOException ex) {
-                Logger.getLogger(MedicineServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        System.out.println("medi service " + m.getId());
+        if (m.getId() != null) {
+            return this.medicineRepository.addOrUpdateProduct(m);
+        } else {
+            if (m.getFile() != null) {
+                try {
+                    Map res = this.cloudinary.uploader().upload(m.getFile().
+                            getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                    m.setImage((String) res.get("secure_url"));
+                } catch (IOException ex) {
+                    Logger.getLogger(MedicineServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+
+            return this.medicineRepository.addOrUpdateProduct(m);
         }
 
-        return this.medicineRepository.addOrUpdateProduct(m);
     }
 
     @Override
     public Medicine getMedicineById(int i) {
         return this.medicineRepository.getMedicineById(i);
+    }
+
+    @Override
+    public void deleteMedicine(Medicine mdcn) {
+        this.medicineRepository.deleteMedicine(mdcn);
+        return;
     }
 
 }
